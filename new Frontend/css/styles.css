@@ -33,6 +33,11 @@ footer{
   background-color: #702632;
   color:white;
 }
+.modal-header
+{
+    background-color: #702632;
+    color:white;
+}
 .section1
 {
   margin-top: 50px;
@@ -45,6 +50,16 @@ footer{
 .icons a:hover
 {
   color:yellow;
+}
+.rmv
+{
+  float: right;
+  position: relative;
+  top:-10px;
+
+}
+.rmv:hover{
+  color: #702632;
 }
 .btn-circle.btn-xl {
   width: 70px;
