@@ -15,7 +15,10 @@
 <![endif]-->
 <script src="js/blocksit.min.js"></script>
 <script>
+
 $(document).ready(function() {
+
+
 	//vendor script
 	$('#header')
 	.css({ 'top':-50 })
@@ -76,6 +79,12 @@ $( document ).ready(function() {
       console.log("rmv clicked");
         $('.delete').show();
     });
+
+		$('#add-form').submit(function (evt) {
+			console.log("Submitting the form");
+				evt.preventDefault();
+				window.history.back();
+		});
 });
 
 
@@ -281,7 +290,7 @@ $( document ).ready(function() {
       <div class="modal-body">
 
 
-		 <form class="form-horizontal">
+		 <form class="form-horizontal" onsubmit="return mySubmitFunction()" >
 
 			<fieldset>
 		 <!-- Text input-->
@@ -318,7 +327,7 @@ $( document ).ready(function() {
 		 <div class="form-group">
 			 <label class="col-md-4 control-label" for="singlebutton"></label>
 			 <div class="col-md-4">
-				 <button id="singlebutton" name="singlebutton" class="btn btn-primary" style="font-family: 'Noto Serif', serif;">Add</button>
+				 <button id="add"  class="btn btn-primary" style="font-family: 'Noto Serif', serif;">Add</button>
 			 </div>
 		 </div>
 

@@ -1,7 +1,10 @@
 var passport = require('passport');
 var util = require('util');
 var Strategy = require('passport-twitter').Strategy;
-
+var mongoose= require('mongoose');
+var model = require('../model/lolterestModel');
+var connection=model.getConnection();
+var user=model.createSchema(connection);
 
 
 
@@ -49,6 +52,11 @@ app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveU
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.get('/logout',function(req,res){
+  req.session.destroy();
+  res.redirect('/');
+
+})
 
 app.get('/login/twitter',
   passport.authenticate('twitter'));
@@ -57,13 +65,21 @@ app.get('/login/twitter',
   app.get('/login/twitter/return',
     passport.authenticate('twitter', { failureRedirect: '/login' }),
     function(req, res) {
+      req.session.user= req.user;
       console.log("Request Values>>>>>> "+req.user.username);
       res.redirect('/');
     });
 
   app.get('/',function(req,res){
+    if(req.session.user)
+    {
+      console.log("Print this"+req.session.user.username);
+      res.render('index',{user:req.session.user});
+    }
+    else {
+        res.render('index',{user:0});
+    }
 
-    res.render('index');
   })
 
 
