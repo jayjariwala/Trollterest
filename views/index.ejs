@@ -17,6 +17,8 @@
 <script>
 $(document).ready(function() {
 
+
+
 	$('.twitter').on('click', function() {
 		console.log("sign-in is clicked");
 			window.location.href = '/login/twitter';
@@ -74,12 +76,22 @@ $(document).ready(function() {
 </script>
 <script>
 function someFunc() {
+
+		var title=$('#title').val();
+		var image=$('#image').val();
+		var story=$('#story').val();
+
     if (1==2) {
         return true;
     } else {
         alert("Not submitting");
         return false;
     }
+}
+function error(img)
+{
+	img.onerror ="";
+	img.src="img/brokenimage.png";
 }
 </script>
 
@@ -193,7 +205,7 @@ else
 		 <div class="form-group">
 			 <label class="col-md-4 control-label" for="textinput" style="font-family: 'Noto Serif', serif;">Title</label>
 			 <div class="col-md-5">
-			 <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required>
+			 <input id="title" name="textinput" type="text" placeholder="" class="form-control input-md" required>
 
 			 </div>
 		 </div>
@@ -202,7 +214,7 @@ else
 		 <div class="form-group">
 			 <label class="col-md-4 control-label" for="textinput" style="font-family: 'Noto Serif', serif;">Image-URL</label>
 			 <div class="col-md-5">
-			 <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required>
+			 <input id="image" name="textinput" type="text" placeholder="" class="form-control input-md" required>
 
 			 </div>
 		 </div>
@@ -212,7 +224,7 @@ else
 		 <div class="form-group">
 			 <label class="col-md-4 control-label" for="textinput" style="font-family: 'Noto Serif', serif;">Story</label>
 			 <div class="col-md-5">
-			 <textarea class="form-control" rows="5" id="comment"></textarea>
+			 <textarea class="form-control" rows="5" id="story"></textarea>
 
 			 </div>
 		 </div>
@@ -272,7 +284,7 @@ else
 	</div>
 	<div class="grid">
 		<div class="imgholder">
-			<img src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img26.jpg" />
+			<img src="sajasjkdasjdjadaskkdajkdaskjdnb"  onerror="error(this);" />
 		</div>
 		<strong>Bridge to Heaven</strong>
 		<p>Where is the bridge lead to?</p>
