@@ -81,6 +81,24 @@ function someFunc() {
 		var image=$('#image').val();
 		var story=$('#story').val();
 
+var  formData = "title="+title+"&image="+image+"&story="+story;  //Name value Pair
+
+
+$.ajax({
+    url : "/postimg",
+    type: "POST",
+    data : formData,
+    success: function(data, textStatus, jqXHR)
+    {
+        console.log("data"+data);
+    },
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+
+    }
+});
+
+
     if (1==2) {
         return true;
     } else {

@@ -57,7 +57,37 @@ app.get('/logout',function(req,res){
   res.redirect('/');
 
 })
+app.post('/postimg',function(req,res){
+    var title = req.body.title;
+    var image= req.body.image;
+    var story= req.body.story;
+    var uid=req.session.user.id;
+    var uname=req.session.user.username;
+    var timestamp = Math.floor(Date.now() /1000);
+    var processid= process.pid;
+    var ranNum = Math.random() * (100 - 0) + 100;
+    var sid= timestamp+''+processid+''+ranNum;
 
+    var user_image = new user({
+      uid: uid,
+      uname:uname,
+      pic_id:sid,
+      pic_url:image,
+      pic_title:title,
+      pic_desc:story
+    });
+
+    user_image.save(function(err){
+              if(err) throw err;
+              console.log("information stored successfully");
+              
+
+            });
+
+
+  res.send("abc");
+
+})
 app.get('/login/twitter',
   passport.authenticate('twitter'));
 
