@@ -60,7 +60,6 @@ app.get('/logout',function(req,res){
 app.post('/postimg',function(req,res){
     var title = req.body.title;
     var image= req.body.image;
-    var story= req.body.story;
     var uid=req.session.user.id;
     var uname=req.session.user.username;
     var timestamp = Math.floor(Date.now() /1000);
@@ -74,8 +73,8 @@ app.post('/postimg',function(req,res){
       pic_id:sid,
       pic_url:image,
       pic_title:title,
-      pic_desc:story,
-      time:timestamp
+      time:timestamp,
+      stars:0
     });
 
     user_image.save(function(err){
