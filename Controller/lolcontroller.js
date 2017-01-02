@@ -74,13 +74,17 @@ app.post('/postimg',function(req,res){
       pic_id:sid,
       pic_url:image,
       pic_title:title,
-      pic_desc:story
+      pic_desc:story,
+      time:timestamp
     });
 
     user_image.save(function(err){
               if(err) throw err;
               console.log("information stored successfully");
-              
+
+
+
+
 
             });
 
@@ -101,13 +105,23 @@ app.get('/login/twitter',
     });
 
   app.get('/',function(req,res){
+
+
+
     if(req.session.user)
     {
-      console.log("Print this"+req.session.user.username);
-      res.render('index',{user:req.session.user});
+      user.find({},{'time':0},function(err,data){
+        console.log("DATA>>>>>>>"+data);
+        res.render('index',{user:req.session.user,pictures:data});
+      }).sort({'time':-1});
+
     }
     else {
-        res.render('index',{user:0});
+      user.find({},{'time':0},function(err,data){
+        console.log("DATA>>>>>>>"+data);
+          res.render('index',{user:0,pictures:data});
+      }).sort({'time':-1});
+
     }
 
   })

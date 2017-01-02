@@ -17,7 +17,8 @@ createSchema : function(mongoose)
     pic_id:String,
     pic_url:String,
     pic_title:String,
-    pic_desc:String
+    pic_desc:String,
+    time:String
   });
 
 return user=mongoose.model('lol_images',taskSchema);
