@@ -86,7 +86,7 @@ function del(val)
 	    },
 	    error: function (jqXHR, textStatus, errorThrown)
 	    {
-				
+
 	    }
 	});
 
@@ -151,7 +151,7 @@ function error(img)
         </button>
         <a class="navbar-brand" href="#">
         <img alt="Brand" src="img/logo.png" width="45px;" style="margin-top:-12px;">
-      </a>  <a class="navbar-brand" href="#">Loltereast</a>
+      </a>  <a class="navbar-brand" href="/">Loltereast</a>
 
 
       </div>
@@ -159,19 +159,19 @@ function error(img)
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-<li class="active"><a href="#">All<span class="sr-only">(current)</span></a></li>
+<li class="active"><a href="/">All<span class="sr-only">(current)</span></a></li>
 
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
 
 
-					<li><a href="login.html"><span class="nav-color" style="font-family: 'Noto Serif', serif;"><i class="fa fa-smile-o"></i> My Lols</span></a></li>
+					<li><a href="/mylols"><span class="nav-color" style="font-family: 'Noto Serif', serif;"><i class="fa fa-smile-o"></i> My Lols</span></a></li>
 
            <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>  <%=user.username%> <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Logout</a></li>
+            <li><a href="/logout">Logout</a></li>
 
           </ul>
         </li>
@@ -195,8 +195,8 @@ function error(img)
 			<div class="imgholder">
 				<img onerror='error(this);' src=<%=each.pic_url%> />
 			</div>
-			<strong><%=each.pic_title%></strong>
-					<span class="btn btn-xs btn-danger" onclick=del(<%=each.pic_id%>);> <i class="fa fa-close"></i> Delete </span>
+			<strong><center><%=each.pic_title%></center></strong>
+					<center><span class="btn btn-xs btn-danger" onclick=del(<%=each.pic_id%>);> <i class="fa fa-close"></i> Delete </span></center>
 		</div>
 
 <%

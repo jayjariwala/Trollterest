@@ -134,7 +134,7 @@ function error(img)
 		</button>
 		<a class="navbar-brand" href="#">
 		<img alt="Brand" src="img/logo.png" width="45px;" style="margin-top:-12px;">
-	</a>  <a class="navbar-brand" href="#">Loltereast</a>
+	</a>  <a class="navbar-brand" href="/">Loltereast</a>
 
 
 	</div>
@@ -143,7 +143,7 @@ function error(img)
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		<ul class="nav navbar-nav">
 
-<li class="active"><a href="#">All<span class="sr-only">(current)</span></a></li>
+<li class="active"><a href="/">All<span class="sr-only">(current)</span></a></li>
 		</ul>
 
 		<ul class="nav navbar-nav navbar-right">
@@ -294,7 +294,7 @@ else
 			<div class="imgholder">
 				<img onerror='error(this);' src=<%=each.pic_url%> />
 			</div>
-			<strong><%=each.pic_title%></strong>
+			<strong><center><%=each.pic_title%></center></strong>
 				<span class="btn btn-sm btn-default"> <i class="fa fa-star"></i> <%=each.stars %> </span> &nbsp;&nbsp;&nbsp;&nbsp; <span class="meta">by <%=each.uname%></span>
 		</div>
 
