@@ -65,7 +65,7 @@ app.post('/postimg',function(req,res){
     var timestamp = Math.floor(Date.now() /1000);
     var processid= process.pid;
     var ranNum = Math.random() * (100 - 0) + 100;
-    var sid= timestamp+''+processid+''+ranNum;
+    var sid= timestamp+processid+ranNum;
 
     var user_image = new user({
       uid: uid,
@@ -80,17 +80,75 @@ app.post('/postimg',function(req,res){
     user_image.save(function(err){
               if(err) throw err;
               console.log("information stored successfully");
-
-
-
-
+              user.find({},{'time':0},function(err,data){
+                  res.send({user:req.session.user,pictures:data});
+              }).sort({'time':-1});
 
             });
 
+})
+app.post('/delimg',function(req,res){
+    var uid=req.body.id;
+    var value=req.body.value;
+    var realu=req.session.user.id;
+    if(uid == realu)
+    {
+      user.findOneAndRemove({pic_id: value, uid:realu},function(err,docs){
+      if(err) throw err;
+      res.send("succes");
+    })
+    }
 
-  res.send("abc");
+});
+
+app.post('/mypostimg',function(req,res){
+    var usrid=req.session.user.id;
+    var title = req.body.title;
+    var image= req.body.image;
+    var uid=req.session.user.id;
+    var uname=req.session.user.username;
+    var timestamp = Math.floor(Date.now() /1000);
+    var processid= process.pid;
+    var sid= timestamp+processid+ranNum;
+
+    var user_image = new user({
+      uid: uid,
+      uname:uname,
+      pic_id:sid,
+      pic_url:image,
+      pic_title:title,
+      time:timestamp,
+      stars:0
+    });
+
+    user_image.save(function(err){
+              if(err) throw err;
+              console.log("information stored successfully");
+              user.find({uid:usrid},{'time':0},function(err,data){
+                  res.send({user:req.session.user,pictures:data});
+              }).sort({'time':-1});
+
+            });
 
 })
+
+
+
+
+
+
+app.get('/mylols',function(req,res){
+
+  var usrid=req.session.user.id;
+console.log("USER ID >>>"+usrid);
+  user.find({uid:usrid},{'time':0},function(err,data){
+    console.log("DATA>>>>>>>"+data);
+    res.render('mylols',{user:req.session.user,pictures:data});
+  }).sort({'time':-1});
+
+
+});
+
 app.get('/login/twitter',
   passport.authenticate('twitter'));
 

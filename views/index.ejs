@@ -17,6 +17,7 @@
 <script>
 $(document).ready(function() {
 
+$('.alert').hide();
 
 
 	$('.twitter').on('click', function() {
@@ -90,7 +91,12 @@ $.ajax({
     data : formData,
     success: function(data, textStatus, jqXHR)
     {
-        console.log("data"+data);
+
+		$('.alert').slideDown();
+
+		setTimeout(
+			function(){ location.reload(); }, 500);
+
     },
     error: function (jqXHR, textStatus, errorThrown)
     {
@@ -99,12 +105,8 @@ $.ajax({
 });
 
 
-    if (1==2) {
-        return true;
-    } else {
-        alert("Not submitting");
+
         return false;
-    }
 }
 function error(img)
 {
@@ -185,7 +187,7 @@ else
 		<ul class="nav navbar-nav navbar-right">
 
 
-			<li><a href="login.html"><span class="nav-color" style="font-family: 'Noto Serif', serif;"><i class="fa fa-smile-o"></i> My Lols</span></a></li>
+			<li><a href="/mylols"><span class="nav-color" style="font-family: 'Noto Serif', serif;"><i class="fa fa-smile-o"></i> My Lols</span></a></li>
 
 			 <li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> <%=user.username%> <span class="caret"></span></a>
@@ -301,7 +303,7 @@ else
 	}
 	%>
 
-
+</div>
 </section>
 
 
