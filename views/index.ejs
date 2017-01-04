@@ -108,6 +108,31 @@ $.ajax({
 
         return false;
 }
+function like(val)
+{
+
+	var uid=<%=user.id%>;
+ 	var  formData = "id="+uid+"&value="+val;
+
+	$.ajax({
+			url : "/like",
+			type: "POST",
+			data : formData,
+			success: function(data, textStatus, jqXHR)
+			{
+				console.log("RECIEVED data"+data);
+			},
+			error: function (jqXHR, textStatus, errorThrown)
+			{
+
+			}
+	});
+
+
+
+
+
+}
 function error(img)
 {
 	img.onerror ="";
@@ -295,7 +320,7 @@ else
 				<img onerror='error(this);' src=<%=each.pic_url%> />
 			</div>
 			<strong><center><%=each.pic_title%></center></strong>
-				<span class="btn btn-sm btn-default"> <i class="fa fa-star"></i> <%=each.stars %> </span> &nbsp;&nbsp;&nbsp;&nbsp; <span class="meta">by <%=each.uname%></span>
+				<span class="btn btn-sm btn-default" onclick=like(<%=each.pic_id%>)> <i class="fa fa-star"></i> <%=each.stars %> </span> &nbsp;&nbsp;&nbsp;&nbsp; <span class="meta">by <%=each.uname%></span>
 		</div>
 
 <%

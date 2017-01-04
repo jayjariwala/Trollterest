@@ -5,6 +5,7 @@ var mongoose= require('mongoose');
 var model = require('../model/lolterestModel');
 var connection=model.getConnection();
 var user=model.createSchema(connection);
+var userLikes= model.createUserLikeSchema(connection);
 
 
 
@@ -100,7 +101,49 @@ app.post('/delimg',function(req,res){
     }
 
 });
+app.post("/like",function(req,res){
+  var uid=req.body.id;
+  var value=req.body.value;
+  var realu=req.session.user.id;
+  if(uid == realu)
+  {
 
+
+
+  userLikes.count({pic_id:value,uid:realu},function(err,data){
+    if(!data ==0)
+    {
+      console.log("DOC FOUND");
+       userLikes.findOneAndRemove({pic_id: value, uid:realu},function(err,docs){
+      if(err) throw err;
+      userLikes.count({pic_id:value},function(err,data){
+          res.sendStatus("count"+data);
+      });
+
+    });
+
+    }
+    else
+    {
+      console.log("NO DOC FOUND");
+      var likes = new userLikes({
+        pic_id:value,
+        uid:realu
+      });
+      likes.save(function(err){
+                if(err) throw err;
+                console.log("information stored successfully");
+                userLikes.count({pic_id:value},function(err,data){
+                 res.sendStatus("count"+data);
+                });
+              });
+    }
+  });
+
+  }
+
+
+});
 app.post('/mypostimg',function(req,res){
     var usrid=req.session.user.id;
     var title = req.body.title;

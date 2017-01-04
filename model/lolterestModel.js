@@ -21,9 +21,18 @@ createSchema : function(mongoose)
     stars:String
   });
 
+
 return user=mongoose.model('lol_images',taskSchema);
 
+},
+createUserLikeSchema : function(mongoose)
+{
+  var Schema= mongoose.Schema;
+  var userlike = new Schema({
+    pic_id:String,
+    uid:String
+  });
+  return userlikes=mongoose.model('likes',userlike);
 }
-
 
 }
