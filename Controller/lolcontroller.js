@@ -128,7 +128,11 @@ app.post("/like",function(req,res){
 
             var query={ pic_id:value}
           user.update(query,{ $set: {stars:senddata}}, function(data){
-            res.send(JSON.stringify(senddata));
+            var obj={
+              likes:senddata,
+              status:"unstar"
+            }
+            res.send(obj);
 
       })
 
@@ -151,7 +155,11 @@ app.post("/like",function(req,res){
                 userLikes.count({pic_id:value},function(err,senddata){
                   var query={ pic_id:value}
                 user.update(query,{ $set: {stars:senddata}}, function(data){
-                  res.send(JSON.stringify(senddata));
+                  var obj={
+                    likes:senddata,
+                    status:"star"
+                  }
+                  res.send(obj);
 
             })
                   //update main model count value

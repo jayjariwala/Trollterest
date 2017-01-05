@@ -155,8 +155,17 @@ var position = where;
 			data : formData,
 			success: function(data, textStatus, jqXHR)
 			{
-				console.log("recieved data"+data);
-				$('#count'+position).html(" "+data);
+
+				$('#count'+position).html(" "+data.likes);
+				if(data.status == 'star')
+				{
+				$('.heart'+position).css('color','red');
+				}
+				if(data.status == 'unstar')
+				{
+					console.log("unstart it");
+					$('.heart'+position).css('color','black');
+				}
 			},
 			error: function (jqXHR, textStatus, errorThrown)
 			{
@@ -358,7 +367,7 @@ else
 				<img onerror='error(this);' src=<%=each.pic_url%> />
 			</div>
 			<strong><center><%=each.pic_title%></center></strong>
-				<span class="btn btn-sm btn-default" onclick=like(<%=each.pic_id%>,<%=i%>)> <i class="fa fa-star"></i><span id="count<%=i%>"> <%=each.stars %> </span></span> &nbsp; <span class="meta">by <a href="javascript:userimg('<%=each.uid%>')"><%=each.uname%></a></span>
+				<span class="btn btn-sm btn-default" onclick=like(<%=each.pic_id%>,<%=i%>)> <i class="fa fa-heart heart<%=i%>"></i><span id="count<%=i%>"> <%=each.stars %> </span></span> &nbsp; <span class="meta">by <a href="javascript:userimg('<%=each.uid0%>')"><%=each.uname%></a></span>
 		</div>
 
 <%
