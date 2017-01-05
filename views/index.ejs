@@ -75,7 +75,41 @@ $('.alert').hide();
 	});
 });
 </script>
+<script type="text/javascript">
+function userimg(myMessage) {
+
+	var uid=myMessage;
+	var formData = "id="+uid;
+
+	$.ajax({
+			url : "/userimg",
+			type: "POST",
+			data : formData,
+			success: function(data, textStatus, jqXHR)
+			{
+
+					$('#container').html("");
+					data.forEach(function(each){
+						$('#container').append("<div class='grid'><div class='imgholder'><img onerror='error(this);' src="+each.pic_url+" /></div><strong><center>"+each.pic_title+"</center></strong><span class='btn btn-sm btn-default' onclick=like("+each.pic_id+")> <i class='fa fa-star'></i><span id='count'>"+each.stars+"</span></span> &nbsp;&nbsp;&nbsp;&nbsp; <span class='meta'>by <a href='javascript:userimg("+each.uid+")'>"+each.uname+"</a></span></div>");
+
+				});
+
+
+
+
+			},
+			error: function (jqXHR, textStatus, errorThrown)
+			{
+
+			}
+	});
+
+}
+</script>
+
 <script>
+
+
 function someFunc() {
 
 		var title=$('#title').val();
@@ -112,7 +146,7 @@ function like(val)
 {
 
 	var uid=<%=user.id%>;
- 	var  formData = "id="+uid+"&value="+val;
+ 	var formData = "id="+uid+"&value="+val;
 
 	$.ajax({
 			url : "/like",
@@ -120,7 +154,8 @@ function like(val)
 			data : formData,
 			success: function(data, textStatus, jqXHR)
 			{
-				console.log("RECIEVED data"+data);
+				console.log("recieved data"+data);
+				$('#count').html(" "+data);
 			},
 			error: function (jqXHR, textStatus, errorThrown)
 			{
@@ -320,7 +355,7 @@ else
 				<img onerror='error(this);' src=<%=each.pic_url%> />
 			</div>
 			<strong><center><%=each.pic_title%></center></strong>
-				<span class="btn btn-sm btn-default" onclick=like(<%=each.pic_id%>)> <i class="fa fa-star"></i> <%=each.stars %> </span> &nbsp;&nbsp;&nbsp;&nbsp; <span class="meta">by <%=each.uname%></span>
+				<span class="btn btn-sm btn-default" onclick=like(<%=each.pic_id%>)> <i class="fa fa-star"></i><span id="count"> <%=each.stars %> </span></span> &nbsp;&nbsp;&nbsp;&nbsp; <span class="meta">by <a href="javascript:userimg(<%=each.uid%>)"><%=each.uname%></a></span>
 		</div>
 
 <%

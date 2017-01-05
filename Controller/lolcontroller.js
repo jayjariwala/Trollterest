@@ -88,6 +88,17 @@ app.post('/postimg',function(req,res){
             });
 
 })
+app.post('/userimg',function(req,res){
+    var u_id=req.body.id;
+
+    user.find({uid:u_id},{'time':0},function(err,data){
+      console.log("DATA>>>>>>>"+data);
+      res.send(data);
+    }).sort({'time':-1});
+
+
+});
+
 app.post('/delimg',function(req,res){
     var uid=req.body.id;
     var value=req.body.value;
@@ -116,8 +127,16 @@ app.post("/like",function(req,res){
       console.log("DOC FOUND");
        userLikes.findOneAndRemove({pic_id: value, uid:realu},function(err,docs){
       if(err) throw err;
-      userLikes.count({pic_id:value},function(err,data){
-          res.sendStatus("count"+data);
+      userLikes.count({pic_id:value},function(err,senddata){
+
+
+            var query={ pic_id:value}
+          user.update(query,{ $set: {stars:senddata}}, function(data){
+            res.send(JSON.stringify(senddata));
+
+      })
+
+
       });
 
     });
@@ -133,8 +152,14 @@ app.post("/like",function(req,res){
       likes.save(function(err){
                 if(err) throw err;
                 console.log("information stored successfully");
-                userLikes.count({pic_id:value},function(err,data){
-                 res.sendStatus("count"+data);
+                userLikes.count({pic_id:value},function(err,senddata){
+                  var query={ pic_id:value}
+                user.update(query,{ $set: {stars:senddata}}, function(data){
+                  res.send(JSON.stringify(senddata));
+
+            })
+                  //update main model count value
+
                 });
               });
     }
