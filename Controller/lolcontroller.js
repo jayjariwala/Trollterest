@@ -127,13 +127,35 @@ app.post("/like",function(req,res){
       userLikes.count({pic_id:value},function(err,senddata){
 
 
+
             var query={ pic_id:value}
           user.update(query,{ $set: {stars:senddata}}, function(data){
-            var obj={
-              likes:senddata,
-              status:"unstar"
-            }
-            res.send(obj);
+
+            user.count({pic_id:value,uid:realu},function(err,datacount){
+
+              console.log("The value of count>>>>>>>>>>>"+datacount);
+              var obj={
+                likes:senddata,
+                status:"unstar"
+              }
+                if(!datacount == 0)
+                {
+                  user.update({uid:realu,pic_id:value},{ $set: {star_status:'nostar'}},function(done){
+                    console.log("Yes updated");
+                    res.send(obj);
+                  })
+                }
+                else {
+                    res.send(obj);
+                }
+
+
+            })
+
+
+
+
+
 
       })
 

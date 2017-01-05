@@ -9,6 +9,16 @@ body{
 header, section, footer, hgroup{
 	display:block;
 }
+.yesstar
+{
+	color:red;
+}
+
+.nostar
+{
+	color:black;
+}
+
 
 a {
 	color:#35BFFF;
