@@ -91,7 +91,6 @@ function userimg(myMessage) {
 					$('#container').html("");
 					data.forEach(function(each){
 						$('#container').append("<div class='grid'><div class='imgholder'><img onerror='error(this);' src="+each.pic_url+" /></div><strong><center>"+each.pic_title+"</center></strong><span class='btn btn-sm btn-default' onclick=like("+each.pic_id+")> <i class='fa fa-star'></i><span id='count'>"+each.stars+"</span></span> &nbsp;&nbsp;&nbsp;&nbsp; <span class='meta'>by <a href='javascript:userimg("+each.uid+")'>"+each.uname+"</a></span></div>");
-
 				});
 
 
@@ -142,11 +141,12 @@ $.ajax({
 
         return false;
 }
-function like(val)
+function like(val,where)
 {
 
 	var uid=<%=user.id%>;
  	var formData = "id="+uid+"&value="+val;
+var position = where;
 
 	$.ajax({
 			url : "/like",
@@ -155,7 +155,7 @@ function like(val)
 			success: function(data, textStatus, jqXHR)
 			{
 				console.log("recieved data"+data);
-				$('#count').html(" "+data);
+				$('#count'+position).html(" "+data);
 			},
 			error: function (jqXHR, textStatus, errorThrown)
 			{
@@ -348,17 +348,20 @@ else
 <div id="container">
 	<% if(pictures)
 	{
+		var i=0;
 		pictures.forEach(function(each){
+
 		%>
 		<div class="grid">
 			<div class="imgholder">
 				<img onerror='error(this);' src=<%=each.pic_url%> />
 			</div>
 			<strong><center><%=each.pic_title%></center></strong>
-				<span class="btn btn-sm btn-default" onclick=like(<%=each.pic_id%>)> <i class="fa fa-star"></i><span id="count"> <%=each.stars %> </span></span> &nbsp;&nbsp;&nbsp;&nbsp; <span class="meta">by <a href="javascript:userimg(<%=each.uid%>)"><%=each.uname%></a></span>
+				<span class="btn btn-sm btn-default" onclick=like(<%=each.pic_id%>,<%=i%>)> <i class="fa fa-star"></i><span id="count<%=i%>"> <%=each.stars %> </span></span> &nbsp;&nbsp;&nbsp;&nbsp; <span class="meta">by <a href="javascript:userimg(<%=each.uid%>)"><%=each.uname%></a></span>
 		</div>
 
 <%
+i++;
 	})
 	}
 	%>
