@@ -75,7 +75,8 @@ app.post('/postimg',function(req,res){
       pic_url:image,
       pic_title:title,
       time:timestamp,
-      stars:0
+      stars:0,
+      star_status:'nostar'
     });
 
     user_image.save(function(err){
@@ -155,11 +156,33 @@ app.post("/like",function(req,res){
                 userLikes.count({pic_id:value},function(err,senddata){
                   var query={ pic_id:value}
                 user.update(query,{ $set: {stars:senddata}}, function(data){
-                  var obj={
-                    likes:senddata,
-                    status:"star"
-                  }
-                  res.send(obj);
+
+
+                  console.log("pic id>>>>>>>>"+value);
+                  console.log("user id>>>>>"+realu);
+                  user.count({pic_id:value,uid:realu},function(err,datacount){
+
+                    console.log("The value of count>>>>>>>>>>>"+datacount);
+                    var obj={
+                      likes:senddata,
+                      status:"star"
+                    }
+                      if(!datacount == 0)
+                      {
+                        user.update({uid:realu,pic_id:value},{ $set: {star_status:'yesstar'}},function(done){
+                          console.log("Yes updated");
+                          res.send(obj);
+                        })
+                      }
+                      else {
+                          res.send(obj);
+                      }
+
+
+                  })
+
+
+
 
             })
                   //update main model count value
