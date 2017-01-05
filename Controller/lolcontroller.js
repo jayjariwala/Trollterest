@@ -100,24 +100,20 @@ app.post('/userimg',function(req,res){
 });
 
 app.post('/delimg',function(req,res){
-    var uid=req.body.id;
+
     var value=req.body.value;
     var realu=req.session.user.id;
-    if(uid == realu)
-    {
       user.findOneAndRemove({pic_id: value, uid:realu},function(err,docs){
       if(err) throw err;
       res.send("succes");
     })
-    }
+
 
 });
 app.post("/like",function(req,res){
-  var uid=req.body.id;
+
   var value=req.body.value;
   var realu=req.session.user.id;
-  if(uid == realu)
-  {
 
 
 
@@ -165,7 +161,7 @@ app.post("/like",function(req,res){
     }
   });
 
-  }
+
 
 
 });

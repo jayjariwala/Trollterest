@@ -357,7 +357,7 @@ else
 				<img onerror='error(this);' src=<%=each.pic_url%> />
 			</div>
 			<strong><center><%=each.pic_title%></center></strong>
-				<span class="btn btn-sm btn-default" onclick=like(<%=each.pic_id%>,<%=i%>)> <i class="fa fa-star"></i><span id="count<%=i%>"> <%=each.stars %> </span></span> &nbsp;&nbsp;&nbsp;&nbsp; <span class="meta">by <a href="javascript:userimg(<%=each.uid%>)"><%=each.uname%></a></span>
+				<span class="btn btn-sm btn-default" onclick=like(<%=each.pic_id%>,<%=i%>)> <i class="fa fa-star"></i><span id="count<%=i%>"> <%=each.stars %> </span></span> &nbsp; <span class="meta">by <a href="javascript:userimg(<%=each.uid%>)"><%=each.uname%></a></span>
 		</div>
 
 <%

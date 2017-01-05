@@ -75,6 +75,8 @@ $(document).ready(function() {
 function del(val)
 {
 	var uid=<%=user.id%>;
+	console.log("USER ID"+uid);
+
  var  formData = "id="+uid+"&value="+val;  //Name value Pair
 	$.ajax({
 	    url : "/delimg",
