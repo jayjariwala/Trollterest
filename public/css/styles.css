@@ -30,7 +30,8 @@
 footer{
   width: 100%;
   height: auto;
-  margin-top: 600px;
+  position: absolute;
+  top: 900px;
   background-color: #702632;
   color:white;
 }

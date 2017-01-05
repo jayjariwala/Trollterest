@@ -189,6 +189,9 @@ function error(img)
 <link rel="canonical" href="http://www.inwebson.com/demo/blocksit-js/demo2/" />
 </head>
 <body>
+	<div class="wrapper">
+
+
 <% if(user == 0)
 {
 	%>
@@ -242,7 +245,7 @@ else
 		</button>
 		<a class="navbar-brand" href="#">
 		<img alt="Brand" src="img/logo.png" width="45px;" style="margin-top:-12px;">
-	</a>  <a class="navbar-brand" href="#">Loltereast</a>
+	</a>  <a class="navbar-brand" href="javascript:window.location.reload();">Loltereast</a>
 
 
 	</div>
@@ -367,7 +370,7 @@ else
 				<img onerror='error(this);' src=<%=each.pic_url%> />
 			</div>
 			<strong><center><%=each.pic_title%></center></strong>
-				<span class="btn btn-sm btn-default" onclick=like(<%=each.pic_id%>,<%=i%>)> <i class="fa fa-heart heart<%=i%> <%=each.star_status%>"></i><span id="count<%=i%>"> <%=each.stars %> </span></span> &nbsp; <span class="meta">by <a href="javascript:userimg('<%=each.uid0%>')"><%=each.uname%></a></span>
+				<span class="btn btn-sm btn-default" onclick=like(<%=each.pic_id%>,<%=i%>)> <i class="fa fa-heart heart<%=i%> <%=each.star_status%>"></i><span id="count<%=i%>"> <%=each.stars %> </span></span> &nbsp; <span class="meta">by <a href="javascript:userimg('<%=each.uid%>')"><%=each.uname%></a></span>
 		</div>
 
 <%
@@ -404,6 +407,6 @@ i++;
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
-
+</div>
 </body>
 </html>
