@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>BlocksIt.js Demonstration #2 - Pinterest Dynamic Grid Layout with CSS3 Transitions</title>
-<meta name="description" content="BlocksIt.js jQuery plugin Demonstration #2 Pinterest dynamic grid with CSS3 Transitions by inWebson.com"/>
-<meta name="keywords" content="demonstration,demo,jquery,blocksit.js,css3,dynamic,grid,layout,inwebson"/>
+	<title>Lolterest</title>
+<link rel="icon" href="img/logo.png">
+
 <link rel='stylesheet' href='css/styles.css' media='screen' />
 <link rel='stylesheet' href='css/style.css' media='screen' />
-
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -95,6 +94,7 @@ function del(val)
 
 
 }
+
 function someFunc() {
 
 		var title=$('#title').val();
@@ -105,16 +105,16 @@ var  formData = "title="+title+"&image="+image;  //Name value Pair
 
 
 $.ajax({
-    url : "/mypostimg",
+    url : "/postimg",
     type: "POST",
     data : formData,
     success: function(data, textStatus, jqXHR)
     {
-
-		$('.alert').slideDown();
+		$('.msg').html(" <div class='alert alert-success'><center><strong>Success!</strong> Indicates a successful or positive action.</center></div>");
+		$('.msg').slideDown();
 
 		setTimeout(
-			function(){ location.reload(); }, 500);
+			function(){ location.reload(); }, 300);
 
     },
     error: function (jqXHR, textStatus, errorThrown)
@@ -127,6 +127,10 @@ $.ajax({
 
         return false;
 }
+
+
+
+
 function error(img)
 {
 	img.onerror ="";
@@ -134,8 +138,7 @@ function error(img)
 }
 </script>
 
-<link rel="shortcut icon" href="http://www.inwebson.com/wp-content/themes/inwebson2/favicon.ico" />
-<link rel="canonical" href="http://www.inwebson.com/demo/blocksit-js/demo2/" />
+
 </head>
 <body>
 
@@ -161,14 +164,14 @@ function error(img)
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-<li class="active"><a href="/">All<span class="sr-only">(current)</span></a></li>
+<li ><a href="/">All<span class="sr-only">(current)</span></a></li>
 
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
 
 
-					<li><a href="/mylols"><span class="nav-color" style="font-family: 'Noto Serif', serif;"><i class="fa fa-smile-o"></i> My Lols</span></a></li>
+					<li ><a href="/mylols"><span class="nav-color" style="font-family: 'Noto Serif', serif;"><i class="fa fa-smile-o"></i> My Lols</span></a></li>
 
            <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>  <%=user.username%> <span class="caret"></span></a>
@@ -263,10 +266,9 @@ function error(img)
 		 </fieldset>
 		 </form>
 
-		 <div class="alert alert-success">
-<center>
-	<strong>Success!</strong> Indicates a successful or positive action.
-</center> </div>
+		 <div class="msg">
+
+		 </div>
 
 
 

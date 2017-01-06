@@ -18,8 +18,7 @@ createSchema : function(mongoose)
     pic_url:String,
     pic_title:String,
     time:String,
-    stars:String,
-    star_status:String
+    stars:String
   });
 
 

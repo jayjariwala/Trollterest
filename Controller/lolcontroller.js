@@ -131,32 +131,12 @@ app.post("/like",function(req,res){
             var query={ pic_id:value}
           user.update(query,{ $set: {stars:senddata}}, function(data){
 
-            user.count({pic_id:value,uid:realu},function(err,datacount){
-
-              console.log("The value of count>>>>>>>>>>>"+datacount);
               var obj={
                 likes:senddata,
                 status:"unstar"
               }
-                if(!datacount == 0)
-                {
-                  user.update({uid:realu,pic_id:value},{ $set: {star_status:'nostar'}},function(done){
                     console.log("Yes updated");
                     res.send(obj);
-                  })
-                }
-                else {
-                    res.send(obj);
-                }
-
-
-            })
-
-
-
-
-
-
       })
 
 
@@ -179,30 +159,12 @@ app.post("/like",function(req,res){
                   var query={ pic_id:value}
                 user.update(query,{ $set: {stars:senddata}}, function(data){
 
-
-                  console.log("pic id>>>>>>>>"+value);
-                  console.log("user id>>>>>"+realu);
-                  user.count({pic_id:value,uid:realu},function(err,datacount){
-
-                    console.log("The value of count>>>>>>>>>>>"+datacount);
                     var obj={
                       likes:senddata,
                       status:"star"
                     }
-                      if(!datacount == 0)
-                      {
-                        user.update({uid:realu,pic_id:value},{ $set: {star_status:'yesstar'}},function(done){
-                          console.log("Yes updated");
-                          res.send(obj);
-                        })
-                      }
-                      else {
-                          res.send(obj);
-                      }
 
-
-                  })
-
+              res.send(obj);
 
 
 
@@ -219,6 +181,9 @@ app.post("/like",function(req,res){
 
 });
 app.post('/mypostimg',function(req,res){
+console.log("came here");
+
+
     var usrid=req.session.user.id;
     var title = req.body.title;
     var image= req.body.image;
@@ -286,14 +251,14 @@ app.get('/login/twitter',
     {
       user.find({},{'time':0},function(err,data){
         console.log("DATA>>>>>>>"+data);
-        res.render('index',{user:req.session.user,pictures:data});
+        res.render('index',{user:req.session.user,pictures:data,us:1});
       }).sort({'time':-1});
 
     }
     else {
       user.find({},{'time':0},function(err,data){
         console.log("DATA>>>>>>>"+data);
-          res.render('index',{user:0,pictures:data});
+          res.render('index',{us:0,pictures:data});
       }).sort({'time':-1});
 
     }

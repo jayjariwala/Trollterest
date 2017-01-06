@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>BlocksIt.js Demonstration #2 - Pinterest Dynamic Grid Layout with CSS3 Transitions</title>
-<meta name="description" content="BlocksIt.js jQuery plugin Demonstration #2 Pinterest dynamic grid with CSS3 Transitions by inWebson.com"/>
-<meta name="keywords" content="demonstration,demo,jquery,blocksit.js,css3,dynamic,grid,layout,inwebson"/>
+<title>lolterest</title>
+<link rel="icon" href="img/logo.png">
 <link rel='stylesheet' href='css/styles.css' media='screen' />
 <link rel='stylesheet' href='css/style.css' media='screen' />
 
@@ -17,7 +16,14 @@
 <script>
 $(document).ready(function() {
 
-$('.alert').hide();
+
+ if( <%=us%> == 0)
+{
+	$(".btn-heart").addClass('disabled');
+}
+
+
+
 
 
 	$('.twitter').on('click', function() {
@@ -125,11 +131,11 @@ $.ajax({
     data : formData,
     success: function(data, textStatus, jqXHR)
     {
-
-		$('.alert').slideDown();
+		$('.msg').html(" <div class='alert alert-success'><center><strong>Success!</strong> Indicates a successful or positive action.</center></div>");
+		$('.msg').slideDown();
 
 		setTimeout(
-			function(){ location.reload(); }, 500);
+			function(){ location.reload(); }, 300);
 
     },
     error: function (jqXHR, textStatus, errorThrown)
@@ -145,7 +151,7 @@ $.ajax({
 function like(val,where)
 {
 
-	var uid=<%=user.id%>;
+	var uid=<%=user.id%>
  	var formData = "id="+uid+"&value="+val;
 var position = where;
 
@@ -157,15 +163,7 @@ var position = where;
 			{
 
 				$('#count'+position).html(" "+data.likes);
-				if(data.status == 'star')
-				{
-				$('.heart'+position).css('color','red');
-				}
-				if(data.status == 'unstar')
-				{
-					console.log("unstart it");
-					$('.heart'+position).css('color','black');
-				}
+
 			},
 			error: function (jqXHR, textStatus, errorThrown)
 			{
@@ -178,21 +176,25 @@ var position = where;
 
 
 }
+</script>
+<script>
 function error(img)
 {
 	img.onerror ="";
 	img.src="img/brokenimage.png";
 }
+
+
+
 </script>
 
-<link rel="shortcut icon" href="http://www.inwebson.com/wp-content/themes/inwebson2/favicon.ico" />
-<link rel="canonical" href="http://www.inwebson.com/demo/blocksit-js/demo2/" />
+
 </head>
 <body>
-	<div class="wrapper">
 
 
-<% if(user == 0)
+
+<% if(us == 0)
 {
 	%>
 	<nav class="navbar navbar-default  navbar-fixed-top" >
@@ -253,7 +255,7 @@ else
 	<!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		<ul class="nav navbar-nav">
-<li class="active"><a href="#">All<span class="sr-only">(current)</span></a></li>
+<li class="active"><a href="javascript:window.location.reload();">All<span class="sr-only">(current)</span></a></li>
 
 		</ul>
 
@@ -313,9 +315,6 @@ else
 		 </div>
 
 
-
-
-
 		 <!-- Button -->
 		 <div class="form-group">
 			 <label class="col-md-4 control-label" for="singlebutton"></label>
@@ -327,10 +326,9 @@ else
 		 </fieldset>
 		 </form>
 
-		 <div class="alert alert-success">
-<center>
-	<strong>Success!</strong> Indicates a successful or positive action.
-</center> </div>
+<div class="msg">
+
+</div>
 
 
 
@@ -370,7 +368,7 @@ else
 				<img onerror='error(this);' src=<%=each.pic_url%> />
 			</div>
 			<strong><center><%=each.pic_title%></center></strong>
-				<span class="btn btn-sm btn-default" onclick=like(<%=each.pic_id%>,<%=i%>)> <i class="fa fa-heart heart<%=i%> <%=each.star_status%>"></i><span id="count<%=i%>"> <%=each.stars %> </span></span> &nbsp; <span class="meta">by <a href="javascript:userimg('<%=each.uid%>')"><%=each.uname%></a></span>
+				<span class="btn btn-sm btn-default btn-heart" onclick=like(<%=each.pic_id%>,<%=i%>)> <i class="fa fa-heart heart<%=i%> "></i><span id="count<%=i%>"> <%=each.stars %> </span></span> &nbsp; <span class="meta">by <a href="javascript:userimg('<%=each.uid%>')"><%=each.uname%></a></span>
 		</div>
 
 <%
@@ -407,6 +405,6 @@ i++;
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
-</div>
+
 </body>
 </html>

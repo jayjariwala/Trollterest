@@ -11,7 +11,7 @@ header, section, footer, hgroup{
 }
 .yesstar
 {
-	color:red;
+	color:#3fb0ac;
 }
 
 .nostar
@@ -123,14 +123,17 @@ a:hover, a:active{
 	margin:8px;
 	font-size:12px;
 	float:left;
-	box-shadow: 0 1px 3px rgba(34,25,25,0.4);
-	-moz-box-shadow: 0 1px 3px rgba(34,25,25,0.4);
-	-webkit-box-shadow: 0 1px 3px rgba(34,25,25,0.4);
+		box-shadow: 0 5px  10px black;
+
 
 	-webkit-transition: top 1s ease, left 1s ease;
 	-moz-transition: top 1s ease, left 1s ease;
 	-o-transition: top 1s ease, left 1s ease;
 	-ms-transition: top 1s ease, left 1s ease;
+}
+.grid:hover
+{
+		box-shadow: 0 1px 10px black;
 }
 
 .grid strong {
