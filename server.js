@@ -10,13 +10,8 @@ app.use(session({
   secret: 'bla bla bla'
 }));
 
-
-
 app.use(express.static('./public'))
 controller(app);
-
-
-
 
 var port= Number(process.env.PORT || 8080);
 app.listen(port);
