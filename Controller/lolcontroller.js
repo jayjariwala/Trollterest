@@ -14,8 +14,8 @@ module.exports = function(app)
 
 
   passport.use(new Strategy({
-      consumerKey: 'gWD1TrHsFukZk3GLQAViqyoyf',
-      consumerSecret: 'MW6vLtyweXTABobyABFHQ4SBR3wX9H7kd5erXRSNP1wfZIQRAT',
+      consumerKey: 'Consumer key here',
+      consumerSecret: 'Consumer Secret here',
       callbackURL: 'https://lolterest.herokuapp.com/login/twitter/return'
     },
     function(token, tokenSecret, profile, cb) {
