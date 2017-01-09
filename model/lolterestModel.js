@@ -5,7 +5,7 @@ module.exports =
 
 getConnection : function()
 {
-  return mongoose.connect('mongodb://test:test@ds151048.mlab.com:51048/lolterest');
+  return mongoose.connect('connection string');
 }
 ,
 createSchema : function(mongoose)
